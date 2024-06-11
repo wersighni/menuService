@@ -1,0 +1,25 @@
+
+
+spring:
+  application:
+    name: menuService
+  datasource:
+
+    url: jdbc:postgresql://localhost:5432/ResturantMenu
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/Restaurant
+          jwk-set-uri: http://localhost:8080/realms/Restaurant/protocol/openid-connect/certs
+
+
+server:
+  port: 8099
