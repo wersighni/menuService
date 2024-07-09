@@ -1,7 +1,9 @@
 package com.resturant.menuService.service;
 
+import com.resturant.menuService.modal.BookTable;
 import com.resturant.menuService.modal.Dish;
 import com.resturant.menuService.modal.TableR;
+import com.resturant.menuService.repository.BookTableRepository;
 import com.resturant.menuService.repository.DishRepository;
 import com.resturant.menuService.repository.TableRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TableService {
     private final TableRepository tableRepository;
-
+    private final BookTableRepository bookTableRepository;
+    public BookTable create( BookTable bookTable)
+    {
+        return bookTableRepository.save(bookTable);
+    }
+    public List<BookTable> getAllBookTable( )
+    {
+        return (List<BookTable>) bookTableRepository.findAll();
+    }
     public List<TableR> getAllTable()
     {
         return (List<TableR>) tableRepository.findAll();
@@ -28,6 +38,11 @@ public class TableService {
     public boolean deleteDish(Long id){
         tableRepository.deleteById(id);
         return  true;
+    }
+    public TableR updateIsAvailable(TableR tableR)
+    {
+        tableR.setIsAvailable(!tableR.getIsAvailable());
+        return tableRepository.save(tableR);
     }
 
 

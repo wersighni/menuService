@@ -16,7 +16,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Slf4j
 public class SecurityConfig {
 
+	private static final String[] AUTH_WHITELIST = {
+			"/api/menu/",
+			"/api/menu/tables/"
 
+
+
+
+	};
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -26,7 +33,7 @@ public class SecurityConfig {
 				.oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
 				.authorizeHttpRequests(
 						authorizeRequests -> authorizeRequests
-								.requestMatchers("/api/menu/")
+								.requestMatchers(AUTH_WHITELIST)
 								.permitAll()
 								.anyRequest()
 								.authenticated()

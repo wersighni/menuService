@@ -13,7 +13,9 @@ public class TableR {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String position;
+    private Long tableNumber;
     private Long capacity;
+    private Boolean isAvailable=true;
+
 
 }
