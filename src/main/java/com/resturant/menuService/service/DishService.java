@@ -19,13 +19,14 @@ public class DishService {
 
    public List<Dish> getAllDish()
     {
-        return (List<Dish>) dishRepository.findAll();
+        return (List<Dish>) dishRepository.findAllByDeleted(false);
     }
     public Dish createDish(Dish dish){
         return dishRepository.save(dish);
     }
     public boolean deleteDish(Long id){
-        dishRepository.deleteById(id);
+       Dish dish=dishRepository.findById(id).get();
+       dish.setDeleted(true);
         return  true;
     }
     public Dish updateisAvailable(Dish dish)

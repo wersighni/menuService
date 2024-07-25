@@ -16,6 +16,8 @@ public class TableR {
     private Long tableNumber;
     private Long capacity;
     private Boolean isAvailable=true;
+    private Boolean deleted=false;
+
 
 
 }

@@ -17,6 +17,7 @@ public class Dish {
     private String description;
     private Double price;
     private Boolean isAvailable=true;
+    private Boolean deleted=false;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

@@ -12,7 +12,7 @@ public class BookTable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userId;
-
+    private String clientName;
     private Date date;
     @ManyToOne
     @JoinColumn(name = "table_id")

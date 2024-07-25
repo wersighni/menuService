@@ -21,22 +21,28 @@ public class TableService {
     private final TableRepository tableRepository;
     private final BookTableRepository bookTableRepository;
     public BookTable create( BookTable bookTable)
-    {
+    {   bookTable.getTableR().setIsAvailable(false);
+        tableRepository.save(bookTable.getTableR());
         return bookTableRepository.save(bookTable);
     }
-    public List<BookTable> getAllBookTable( )
+    public List<BookTable>getAllBookTable ( )
     {
         return (List<BookTable>) bookTableRepository.findAll();
     }
+    public List<BookTable> getAllBookTableByUserid( String userId)
+    {
+        return (List<BookTable>) bookTableRepository.findByUserId(userId);
+    }
     public List<TableR> getAllTable()
     {
-        return (List<TableR>) tableRepository.findAll();
+        return (List<TableR>) tableRepository.findAllByDeleted(false);
     }
     public TableR createTable(TableR table){
         return tableRepository.save(table);
     }
     public boolean deleteDish(Long id){
-        tableRepository.deleteById(id);
+        TableR tableR=tableRepository.findById(id).get();
+        tableR.setDeleted(true);
         return  true;
     }
     public TableR updateIsAvailable(TableR tableR)

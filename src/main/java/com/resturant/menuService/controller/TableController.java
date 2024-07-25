@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -35,12 +36,19 @@ public class TableController {
     @PostMapping("/tables/bookTable")
 
     public BookTable createBookTable(@RequestBody BookTable bookTable) {
-
+        Date date=new Date();
+            bookTable.setDate(date);
         return tableService.create(bookTable);
+    }
+    @GetMapping("/tables/bookTable/{userId}")
+
+    public List<BookTable> getAllBookTableByUserid(@PathVariable String userId) {
+
+        return tableService.getAllBookTableByUserid(userId);
     }
     @GetMapping("/tables/bookTable")
 
-    public List<BookTable> getAllBookTable() {
+    public List<BookTable> getAllBookTable () {
 
         return tableService.getAllBookTable();
     }
